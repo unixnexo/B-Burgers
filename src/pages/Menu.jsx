@@ -185,8 +185,8 @@ const Menu = () => {
 
     const [menuItems, setMenuItems] = useState(initialMenuItems);
 
-    const mdScreen = useMediaQuery('(max-width: 1024px)');
-    const lgScreen = useMediaQuery('(min-width: 1024px)');
+    // const mdScreen = useMediaQuery('(max-width: 1024px)');
+    // const lgScreen = useMediaQuery('(min-width: 1024px)');
 
     return (
         <main>
@@ -194,14 +194,9 @@ const Menu = () => {
             <div className="flex lg:flex-row flex-col p-2 pt-10 pb-20">
 
                 {/* sidebar wrapper */}
-                {/* {lgScreen && */}
-                    <div className="lg:border-2 rounded-lg ml-2 h-min lg:sticky top-3 mb-10 lg:mb-0">
-                        <Navbar setMenuItems={setMenuItems} initialMenuItems={initialMenuItems} />
-                    </div>
-                {/* } */}
-                {/* {mdScreen &&
-                    <h1>life life life life</h1>
-                } */}
+                <div className="lg:border-2 rounded-lg ml-2 h-min lg:sticky top-3 mb-16 lg:mb-0 flex justify-center">
+                    <Navbar setMenuItems={setMenuItems} initialMenuItems={initialMenuItems} />
+                </div>
 
                 {/* menu items wrapper */}
                 <div className="grow grid grid-cols-2 sm:grid-cols-3 gap-y-24">
