@@ -195,7 +195,7 @@ const Menu = () => {
 
                 {/* sidebar wrapper */}
                 {/* {lgScreen && */}
-                    <div className="lg:border-2 rounded-lg ml-2 h-min lg:sticky top-3 mb-10 lg:mb-0 ">
+                    <div className="lg:border-2 rounded-lg ml-2 h-min lg:sticky top-3 mb-10 lg:mb-0">
                         <Navbar setMenuItems={setMenuItems} initialMenuItems={initialMenuItems} />
                     </div>
                 {/* } */}

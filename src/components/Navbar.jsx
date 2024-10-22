@@ -48,7 +48,7 @@ const Navbar = ({ setMenuItems, initialMenuItems }) => {
     };
 
     return (
-        <nav className="space-y-2 flex justify-center lg:block overflow-auto lg:overflow-hidden">
+        <nav className="space-y-2 flex justify-evenly lg:block overflow-auto lg:overflow-visible scrollbar-hide cursor-col-resize whitespace-nowrap">
             {navbarItems.map((item) => (
                 <NavbarItem 
                     title={item.title} 
