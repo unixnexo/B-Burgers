@@ -48,7 +48,7 @@ const Header = () => {
 
                 {/* big btn */}
                 <div className="relative sm:flex hidden items-start space-x-3">
-                    <button className="bg-Bred p-2 rounded-md">Call the waiter</button>
+                    <button popovertarget="call-the-waiter-popover" className="bg-Bred p-2 rounded-md">Call the waiter</button>
                 </div>
             </div>
 
