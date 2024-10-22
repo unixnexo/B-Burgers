@@ -1,11 +1,11 @@
 const NavbarItem = ({ title, imgSrc, isActive, onClick }) => {
 
     return ( 
-        <div onClick={onClick} className="flex items-center space-x-2 cursor-pointer hover:scale-105 transition-all">
-            <div className={`size-20 overflow-hidden rounded border-Bred pl-4 py-2 ${isActive ? 'border-l-4' : 'border-l-0'}`}>
+        <div onClick={onClick} className="flex shrink-0 flex-col lg:flex-row justify-center lg:justify-start items-center lg:space-x-2 mx-5 lg:mx-0 cursor-pointer lg:hover:scale-105 transition-all">
+            <div className={`size-20 grow lg:grow-0 overflow-hidden rounded border-Bred lg:pl-4 lg:py-2 ${isActive ? 'border-l-4' : 'border-l-0'}`}>
                 <img src={imgSrc} className="w-full object-cover" alt="burgers" />
             </div>
-            <div className="pr-4">
+            <div className="lg:pr-4 text-sm lg:text-base">
                 <p>{title}</p>
             </div>
         </div>
@@ -13,3 +13,6 @@ const NavbarItem = ({ title, imgSrc, isActive, onClick }) => {
 }
  
 export default NavbarItem;
+
+
+/// make it default that view all should have border in the first place
