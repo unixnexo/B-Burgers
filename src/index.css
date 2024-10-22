@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* fonts */
+.luckiest-guy-regular {
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+.body, html {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  overflow-x: hidden;
+
+  color: theme('colors.Bblack');
+}
+
+
+
+/* animations */
+@keyframes blinking {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.blinking-animation {
+    animation: blinking 2s infinite;
+}
+
+
+/* bottom-right menu */
+.menu-content {
+    position: fixed;
+    bottom: -250px;
+    right: -250px;
+    width: 500px;
+    height: 500px;
+    background-color: theme('colors.Bred'); 
+    clip-path: ellipse(0% 0%);
+    transition: clip-path 1s ease;
+    overflow: hidden;
+    z-index: 1; 
+  }
+  
+  .menu-active {
+    clip-path: ellipse(50% 50%);
+  }
+  
+  .ellipse-enter-active { animation: 1s ellipse reverse; }
+  .ellipse-leave-active { animation: 1s ellipse; }
+  
+  @keyframes ellipse {
+    0% { clip-path: ellipse(50% 50%); }
+    100% { clip-path: ellipse(0% 0%); }
+  }
+
+
+
+/* test */
+
+
+
