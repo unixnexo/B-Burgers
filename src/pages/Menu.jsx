@@ -1,7 +1,8 @@
 import { useState } from "react";
 import MenuCard from "../components/MenuCard";
 import Navbar from "../components/Navbar";
-import useMediaQuery from '../hooks/useMediaQuery';
+// import useMediaQuery from '../hooks/useMediaQuery';
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 const Menu = () => {
 
@@ -188,6 +189,8 @@ const Menu = () => {
     // const mdScreen = useMediaQuery('(max-width: 1024px)');
     // const lgScreen = useMediaQuery('(min-width: 1024px)');
 
+    const [animationParent] = useAutoAnimate();
+
     return (
         <main>
 
@@ -199,7 +202,7 @@ const Menu = () => {
                 </div>
 
                 {/* menu items wrapper */}
-                <div className="grow grid grid-cols-2 sm:grid-cols-3 gap-y-24">
+                <div className="grow grid grid-cols-2 sm:grid-cols-3 gap-y-24" ref={animationParent}>
                     {menuItems.map((item) => (
                         <MenuCard imgSrc={item.imgSrc} title={item.title} price={item.price} category={item.category} key={item.id} />
                     ))}
