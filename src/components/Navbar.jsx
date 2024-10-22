@@ -1,3 +1,4 @@
+import { useState } from "react";
 import NavbarItem from "./NavbarItem";
 
 const Navbar = ({ setMenuItems, initialMenuItems }) => {
@@ -35,10 +36,27 @@ const Navbar = ({ setMenuItems, initialMenuItems }) => {
         },
     ];
 
+    const [activeTitle, setActiveTitle] = useState(null);
+
+    const handleClick = (clickedTitle) => {
+        if (clickedTitle === 'View All') {
+            setMenuItems(initialMenuItems);
+        } else {
+            setMenuItems(initialMenuItems.filter((item) => item.category === clickedTitle));
+        }
+        setActiveTitle(clickedTitle);
+    };
+
     return (
         <nav className="space-y-2">
             {navbarItems.map((item) => (
-                <NavbarItem title={item.title} imgSrc={item.imgSrc} key={item.id} setMenuItems={setMenuItems} initialMenuItems={initialMenuItems} />
+                <NavbarItem 
+                    title={item.title} 
+                    imgSrc={item.imgSrc} 
+                    key={item.id}  
+                    isActive={activeTitle === item.title}
+                    onClick={() => handleClick(item.title)}
+                />
             ))}
         </nav>
     );
