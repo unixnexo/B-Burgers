@@ -3,7 +3,6 @@ import MenuCard from "../components/MenuCard";
 import Navbar from "../components/Navbar";
 // import useMediaQuery from '../hooks/useMediaQuery';
 import { useAutoAnimate } from '@formkit/auto-animate/react'
-import Popover from "../components/Popover";
 
 const Menu = () => {
 
@@ -210,8 +209,6 @@ const Menu = () => {
                 </div>
 
             </div>
-
-            <Popover />
 
         </main>
     );

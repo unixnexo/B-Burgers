@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import Popover from "../components/Popover";
 
 const Header = () => {
     const [orderNumber, setOrderNumber] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+
 
     useEffect(() => {
         // order calls
@@ -25,6 +28,16 @@ const Header = () => {
     // for bottom-right menu
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+
+    // for popover
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
+
+    const handleCallWaiterClick = () => {
+        console.log('submited, show a toast message');
     };
 
     return (
@@ -50,6 +63,26 @@ const Header = () => {
                 <div className="relative sm:flex hidden items-start space-x-3">
                     <button popovertarget="call-the-waiter-popover" className="bg-Bred p-2 rounded-md">Call the waiter</button>
                 </div>
+                <Popover popoverId="call-the-waiter-popover">
+                    <div className="flex flex-col items-center py-3">
+                        <div className="flex space-x-2 items-center">
+                            <p>You're table number is</p>
+                            <input 
+                                type="number" 
+                                className="border-0 border-b outline-0 h-5 text-white bg-Bred"
+                                value={inputValue}
+                                onChange={handleInputChange} 
+                            />
+                        </div>
+                        <button
+                            popovertarget="call-the-waiter-popover"
+                            popovertargetaction="hide"
+                            onClick={handleCallWaiterClick} 
+                            disabled={!inputValue} className="mt-5 bg-white rounded-md text-Bblack p-2 disabled:bg-white/60 disabled:text-Bblack/60"
+                            >Call the waiter
+                        </button>
+                    </div>
+                </Popover>
             </div>
 
             {/* menu on bottom-right */}
