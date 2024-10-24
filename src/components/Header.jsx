@@ -5,6 +5,7 @@ const Header = () => {
     const [orderNumber, setOrderNumber] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
+    const [isVisible, setIsVisible] = useState(false); 
 
 
     useEffect(() => {
@@ -38,9 +39,16 @@ const Header = () => {
 
     const handleCallWaiterClick = () => {
         console.log('submited, show a toast message');
+        // for popover unsupported
+        setIsVisible(!isVisible);
+    };
+    // when popover unsupported
+    const handlePopoverStateChange = () => {
+        setIsVisible(!isVisible);
     };
 
     return (
+    <>
         <header className="p-2">
             
             <div className="flex justify-between items-start">
@@ -61,28 +69,8 @@ const Header = () => {
 
                 {/* big btn */}
                 <div className="relative sm:flex hidden items-start space-x-3">
-                    <button popovertarget="call-the-waiter-popover" className="bg-Bred p-2 rounded-md">Call the waiter</button>
+                    <button popovertarget="call-the-waiter-popover" onClick={handlePopoverStateChange} className="bg-Bred p-2 rounded-md">Call the waiter</button>
                 </div>
-                <Popover popoverId="call-the-waiter-popover">
-                    <div className="flex flex-col items-center py-3">
-                        <div className="flex space-x-2 items-center">
-                            <p>You're table number is</p>
-                            <input 
-                                type="number" 
-                                className="border-0 border-b outline-0 h-5 text-white bg-Bred"
-                                value={inputValue}
-                                onChange={handleInputChange} 
-                            />
-                        </div>
-                        <button
-                            popovertarget="call-the-waiter-popover"
-                            popovertargetaction="hide"
-                            onClick={handleCallWaiterClick} 
-                            disabled={!inputValue} className="mt-5 bg-white rounded-md text-Bblack p-2 disabled:bg-white/60 disabled:text-Bblack/60"
-                            >Call the waiter
-                        </button>
-                    </div>
-                </Popover>
             </div>
 
             {/* menu on bottom-right */}
@@ -92,7 +80,7 @@ const Header = () => {
                 </div>
                 <div className={`menu-content [&>button]:absolute [&>button]:bg-white [&>button]:p-2 [&>button]:rounded-lg ${isOpen ? 'menu-active' : ''}`}>
                     <button className="top-8 left-[160px] ">Branches</button>
-                    <button className="top-20 left-[126px]">Call the waiter</button>
+                    <button popovertarget="call-the-waiter-popover" onClick={handlePopoverStateChange} className="top-20 left-[126px]">Call the waiter</button>
                     <button className="top-32 left-[48px]">Restaurant operating hours</button>
                     <p className="absolute top-[200px] left-5 text-sm">You are in Florida US branch!</p>
                     <p className="absolute top-[220px] left-5 text-sm">We are open until 11 PM.</p>
@@ -100,6 +88,29 @@ const Header = () => {
             </div>
 
         </header>
+
+
+        <Popover popoverId="call-the-waiter-popover" isVisible={isVisible} setIsVisible={setIsVisible}> 
+            <div className="flex flex-col items-center py-3">
+                <div className="flex space-x-2 items-center">
+                    <p>You're table number is</p>
+                    <input 
+                        type="number" 
+                        className="border-0 border-b rounded-none outline-none h-5 text-white bg-Bred"
+                        value={inputValue}
+                        onChange={handleInputChange} 
+                    />
+                </div>
+                <button
+                    popovertarget="call-the-waiter-popover"
+                    popovertargetaction="hide"
+                    onClick={handleCallWaiterClick}
+                    disabled={!inputValue} className="mt-5 bg-white rounded-md text-Bblack p-2 disabled:bg-white/60 disabled:text-Bblack/60"
+                    >Call the waiter
+                </button>
+            </div>
+        </Popover>
+    </>
     );
 }
  
