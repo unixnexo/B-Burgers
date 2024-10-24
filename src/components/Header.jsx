@@ -5,7 +5,10 @@ const Header = () => {
     const [orderNumber, setOrderNumber] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
-    const [isVisible, setIsVisible] = useState(false); 
+    const [popoverVisibility, setPopoverVisibility] = useState({
+        waiter: false,
+        branches: false,
+    }); 
 
 
     useEffect(() => {
@@ -40,11 +43,19 @@ const Header = () => {
     const handleCallWaiterClick = () => {
         console.log('submited, show a toast message');
         // for popover unsupported
-        setIsVisible(!isVisible);
+        setVisibility('waiter', false);
     };
     // when popover unsupported
-    const handlePopoverStateChange = () => {
-        setIsVisible(!isVisible);
+    // const handlePopoverStateChange = () => {
+    //     setIsVisible(!isVisible);
+    // };
+
+    //
+    const setVisibility = (popoverId, isVisible) => {
+        setPopoverVisibility((prev) => ({
+            ...prev,
+            [popoverId]: isVisible,
+        }));
     };
 
     return (
@@ -79,7 +90,7 @@ const Header = () => {
                     <img width="44" height="44" src="https://img.icons8.com/3d-fluency/94/hamburger.png" alt="hamburger"/>
                 </div>
                 <div className={`menu-content [&>button]:absolute [&>button]:bg-white [&>button]:p-2 [&>button]:rounded-lg ${isOpen ? 'menu-active' : ''}`}>
-                    <button className="top-8 left-[160px] ">Branches</button>
+                    <button popovertarget="branches-popover" onClick={handlePopoverStateChange} className="top-8 left-[160px] ">Branches</button>
                     <button popovertarget="call-the-waiter-popover" onClick={handlePopoverStateChange} className="top-20 left-[126px]">Call the waiter</button>
                     <button className="top-32 left-[48px]">Restaurant operating hours</button>
                     <p className="absolute top-[200px] left-5 text-sm">You are in Florida US branch!</p>
@@ -90,7 +101,10 @@ const Header = () => {
         </header>
 
 
-        <Popover popoverId="call-the-waiter-popover" isVisible={isVisible} setIsVisible={setIsVisible}> 
+        <Popover 
+            popoverId="call-the-waiter-popover" 
+            isVisible={popoverVisibility.waiter} 
+            setIsVisible={(visible) => setVisibility('waiter', visible)}>
             <div className="flex flex-col items-center py-3">
                 <div className="flex space-x-2 items-center">
                     <p>You're table number is</p>
@@ -110,6 +124,13 @@ const Header = () => {
                 </button>
             </div>
         </Popover>
+        <Popover 
+            popoverId="branches-popover" 
+            isVisible={popoverVisibility.branches}
+            setIsVisible={(visible) => setVisibility('branches', visible)}>
+            <h1>our branches</h1>
+        </Popover>
+        {/* check GPT last answer */}
     </>
     );
 }
