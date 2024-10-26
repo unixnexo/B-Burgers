@@ -20,7 +20,7 @@ const Popover = ({ children, popoverId, isVisible, setIsVisible }) => {
         if (popoverSupported) {
             popoverRef.current.hidePopover();
         } else {
-            setIsVisible(!isVisible);
+            setIsVisible();
         }
         
     };

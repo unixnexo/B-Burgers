@@ -5,10 +5,7 @@ const Header = () => {
     const [orderNumber, setOrderNumber] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
-    const [popoverVisibility, setPopoverVisibility] = useState({
-        waiter: false,
-        branches: false,
-    }); 
+    const [openPopoverId, setOpenPopoverId] = useState(null);
 
 
     useEffect(() => {
@@ -43,19 +40,12 @@ const Header = () => {
     const handleCallWaiterClick = () => {
         console.log('submited, show a toast message');
         // for popover unsupported
-        setVisibility('waiter', false);
+        // setVisibility('waiter', false);
     };
-    // when popover unsupported
-    // const handlePopoverStateChange = () => {
-    //     setIsVisible(!isVisible);
-    // };
 
     //
-    const setVisibility = (popoverId, isVisible) => {
-        setPopoverVisibility((prev) => ({
-            ...prev,
-            [popoverId]: isVisible,
-        }));
+    const togglePopover = (popoverId) => {
+        setOpenPopoverId((prevId) => (prevId === popoverId ? null : popoverId));
     };
 
     return (
@@ -80,7 +70,7 @@ const Header = () => {
 
                 {/* big btn */}
                 <div className="relative sm:flex hidden items-start space-x-3">
-                    <button popovertarget="call-the-waiter-popover" onClick={handlePopoverStateChange} className="bg-Bred p-2 rounded-md">Call the waiter</button>
+                    <button popovertarget="call-the-waiter-popover" className="bg-Bred p-2 rounded-md">Call the waiter</button>
                 </div>
             </div>
 
@@ -90,8 +80,8 @@ const Header = () => {
                     <img width="44" height="44" src="https://img.icons8.com/3d-fluency/94/hamburger.png" alt="hamburger"/>
                 </div>
                 <div className={`menu-content [&>button]:absolute [&>button]:bg-white [&>button]:p-2 [&>button]:rounded-lg ${isOpen ? 'menu-active' : ''}`}>
-                    <button popovertarget="branches-popover" onClick={handlePopoverStateChange} className="top-8 left-[160px] ">Branches</button>
-                    <button popovertarget="call-the-waiter-popover" onClick={handlePopoverStateChange} className="top-20 left-[126px]">Call the waiter</button>
+                    <button popovertarget="branches-popover" onClick={() => togglePopover('branches')} className="top-8 left-[160px] ">Branches</button>
+                    <button popovertarget="call-the-waiter-popover" onClick={() => togglePopover('waiter')} className="top-20 left-[126px]">Call the waiter</button>
                     <button className="top-32 left-[48px]">Restaurant operating hours</button>
                     <p className="absolute top-[200px] left-5 text-sm">You are in Florida US branch!</p>
                     <p className="absolute top-[220px] left-5 text-sm">We are open until 11 PM.</p>
@@ -103,8 +93,8 @@ const Header = () => {
 
         <Popover 
             popoverId="call-the-waiter-popover" 
-            isVisible={popoverVisibility.waiter} 
-            setIsVisible={(visible) => setVisibility('waiter', visible)}>
+            isVisible={openPopoverId === 'waiter'}
+            setIsVisible={() => togglePopover('waiter')}>
             <div className="flex flex-col items-center py-3">
                 <div className="flex space-x-2 items-center">
                     <p>You're table number is</p>
@@ -126,11 +116,10 @@ const Header = () => {
         </Popover>
         <Popover 
             popoverId="branches-popover" 
-            isVisible={popoverVisibility.branches}
-            setIsVisible={(visible) => setVisibility('branches', visible)}>
+            isVisible={openPopoverId === 'branches'}
+            setIsVisible={() => togglePopover('branches')}>
             <h1>our branches</h1>
         </Popover>
-        {/* check GPT last answer */}
     </>
     );
 }
