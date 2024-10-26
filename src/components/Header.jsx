@@ -82,7 +82,7 @@ const Header = () => {
                 <div className={`menu-content [&>button]:absolute [&>button]:bg-white [&>button]:p-2 [&>button]:rounded-lg ${isOpen ? 'menu-active' : ''}`}>
                     <button popovertarget="branches-popover" onClick={() => togglePopover('branches')} className="top-8 left-[160px] ">Branches</button>
                     <button popovertarget="call-the-waiter-popover" onClick={() => togglePopover('waiter')} className="top-20 left-[126px]">Call the waiter</button>
-                    <button className="top-32 left-[48px]">Restaurant operating hours</button>
+                    <button popovertarget="operating-hours-popover" onClick={() => togglePopover('operating-hours')} className="top-32 left-[48px]">Restaurant operating hours</button>
                     <p className="absolute top-[200px] left-5 text-sm">You are in Florida US branch!</p>
                     <p className="absolute top-[220px] left-5 text-sm">We are open until 11 PM.</p>
                 </div>
@@ -118,7 +118,57 @@ const Header = () => {
             popoverId="branches-popover" 
             isVisible={openPopoverId === 'branches'}
             setIsVisible={() => togglePopover('branches')}>
-            <h1>our branches</h1>
+            <ul>
+                <p className="text-3xl mb-1">US</p>
+                <li>New York - 2440 Geraldine Lane</li>
+                <li>Folsom - 675 Patton Lane</li>
+                <li>Norfolk - 1735 Pinchelone Street</li>
+                <li>Brewster - 1872 Old Dear Lane</li>
+                <hr className="my-4"/>
+                <p className="text-3xl mb-1">Iran</p>
+                <li>Tehran - Shams Blind Alley, Vali-e-Asr St</li>
+                <li>Shiraz - After 10th Alley, Eram St</li>
+                <hr className="my-4"/>
+                <p className="text-3xl mb-1">Italy</p>
+                <li>Briatico - Via Rocca de Baldi 55</li>
+                <li>Santa Maria - Via Croce Rossa 108</li>
+            </ul>
+        </Popover>
+        <Popover 
+            popoverId="operating-hours-popover" 
+            isVisible={openPopoverId === 'operating-hours'}
+            setIsVisible={() => togglePopover('operating-hours')}>
+            <p className="text-center mb-4 text-2xl">All Branches, All Cities!</p> 
+            <div className="*:flex *:justify-between">
+                <div>
+                    <p>Monday</p>
+                    <p>12 AM to 11 PM</p>
+                </div>
+                <div>
+                    <p>Tuesday</p>
+                    <p>12 AM to 11 PM</p>
+                </div>
+                <div>
+                    <p>Wednesday</p>
+                    <p>12 AM to 11 PM</p>
+                </div>
+                <div>
+                    <p>Thursday</p>
+                    <p>12 AM to 11 PM</p>
+                </div>
+                <div>
+                    <p>Friday</p>
+                    <p>12 AM to 11 PM</p>
+                </div>
+                <div>
+                    <p>Saturday</p>
+                    <p>6 PM to 11 PM</p>
+                </div>
+                <div>
+                    <p>Sunday</p>
+                    <p>6 PM to 11 PM</p>
+                </div>
+            </div>
         </Popover>
     </>
     );

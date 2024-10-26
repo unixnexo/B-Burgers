@@ -36,7 +36,7 @@ const Navbar = ({ setMenuItems, initialMenuItems }) => {
         },
     ];
 
-    const [activeTitle, setActiveTitle] = useState(null);
+    const [activeTitle, setActiveTitle] = useState("View All");
 
     const handleClick = (clickedTitle) => {
         if (clickedTitle === 'View All') {
