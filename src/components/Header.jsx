@@ -39,11 +39,11 @@ const Header = () => {
 
     const handleCallWaiterClick = () => {
         console.log('submited, show a toast message');
-        // for popover unsupported
-        // setVisibility('waiter', false);
+        // for unsupported popover
+        togglePopover('waiter');
     };
 
-    //
+    // for unsupported popover - only one should be open at a time
     const togglePopover = (popoverId) => {
         setOpenPopoverId((prevId) => (prevId === popoverId ? null : popoverId));
     };
@@ -70,7 +70,7 @@ const Header = () => {
 
                 {/* big btn */}
                 <div className="relative sm:flex hidden items-start space-x-3">
-                    <button popovertarget="call-the-waiter-popover" className="bg-Bred p-2 rounded-md">Call the waiter</button>
+                    <button popovertarget="call-the-waiter-popover" onClick={() => togglePopover('waiter')} className="bg-Bred p-2 rounded-md">Call the waiter</button>
                 </div>
             </div>
 
