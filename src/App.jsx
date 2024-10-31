@@ -3,6 +3,7 @@ import "./index.css";
 import MainLayout from "./layouts/MainLayout";
 import NotFound from "./pages/NotFound";
 import Menu from "./pages/Menu";
+import { useState } from "react";
 
 
 function App() {
@@ -186,12 +187,12 @@ function App() {
   ];
 
   //
-  const userReceipt = [];
+  const [userReceipt, setUserReceipt] = useState({});
 
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<MainLayout />}>
-        <Route path="/" element={<Menu initialMenuItems={initialMenuItems} />}/>
+        <Route path="/" element={<Menu initialMenuItems={initialMenuItems} userReceipt={userReceipt} setUserReceipt={setUserReceipt} />}/>
         <Route path="*" element={<NotFound />} />
       </Route>
     )

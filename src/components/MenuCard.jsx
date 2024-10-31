@@ -1,8 +1,4 @@
-const MenuCard = ({ imgSrc, title, price }) => {
-
-    const handleClick = (title) => {
-        console.log(title);
-    };
+const MenuCard = ({ imgSrc, title, price, handleClick }) => {
 
     return (
         <div onClick={() => handleClick(title)} className="flex flex-col items-center justify-start relative lg:hover:scale-105 transition-all cursor-pointer">

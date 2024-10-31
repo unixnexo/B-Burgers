@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuCard from "../components/MenuCard";
 import Navbar from "../components/Navbar";
 // import useMediaQuery from '../hooks/useMediaQuery';
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
-const Menu = ({ initialMenuItems }) => {
+const Menu = ({ initialMenuItems, userReceipt, setUserReceipt }) => {
 
     const [menuItems, setMenuItems] = useState(initialMenuItems);
 
@@ -12,6 +12,18 @@ const Menu = ({ initialMenuItems }) => {
     // const lgScreen = useMediaQuery('(min-width: 1024px)');
 
     const [animationParent] = useAutoAnimate();
+
+    const handleClick = (title) => {
+        console.log(title);
+        setUserReceipt(prev => ({
+            ...prev,
+            [title]: title,
+        }));
+    };
+
+    useEffect(() => {
+        console.log(userReceipt);
+    }, [userReceipt]);
 
     return (
         <main>
@@ -26,7 +38,7 @@ const Menu = ({ initialMenuItems }) => {
                 {/* menu items wrapper */}
                 <div className="grow grid grid-cols-2 sm:grid-cols-3 gap-y-24" ref={animationParent}>
                     {menuItems.map((item) => (
-                        <MenuCard imgSrc={item.imgSrc} title={item.title} price={item.price} category={item.category} key={item.id} />
+                        <MenuCard imgSrc={item.imgSrc} title={item.title} price={item.price} category={item.category} key={item.id} handleClick={handleClick} />
                     ))}
                 </div>
 
