@@ -1,24 +1,36 @@
 import { useEffect, useState } from "react";
 import MenuCard from "../components/MenuCard";
 import Navbar from "../components/Navbar";
-// import useMediaQuery from '../hooks/useMediaQuery';
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import useUniqueId from '../hooks/useUniqueId';
 
 const Menu = ({ initialMenuItems, userReceipt, setUserReceipt }) => {
 
     const [menuItems, setMenuItems] = useState(initialMenuItems);
 
-    // const mdScreen = useMediaQuery('(max-width: 1024px)');
-    // const lgScreen = useMediaQuery('(min-width: 1024px)');
-
     const [animationParent] = useAutoAnimate();
 
+    const generateUniqueId = useUniqueId();
+
     const handleClick = (title) => {
-        console.log(title);
-        setUserReceipt(prev => ({
-            ...prev,
-            [title]: title,
-        }));
+        setUserReceipt(prev => {
+            const existingItem = prev.findIndex(item => item.title === title);
+
+            if (existingItem !== -1) {
+                const updatedReceipts = [...prev];
+                updatedReceipts[existingItem] = {
+                    ...updatedReceipts[existingItem],
+                    quantity: updatedReceipts[existingItem].quantity + 1
+                };
+                return updatedReceipts;
+            } else {
+                return [
+                    ...prev,
+                    { id: generateUniqueId(), title, quantity: 1 }
+                ];
+            }
+
+        });
     };
 
     useEffect(() => {

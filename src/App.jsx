@@ -186,8 +186,7 @@ function App() {
     },
   ];
 
-  //
-  const [userReceipt, setUserReceipt] = useState({});
+  const [userReceipt, setUserReceipt] = useState([]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
