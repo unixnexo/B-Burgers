@@ -19,7 +19,7 @@ const MainLayout = ({ initialMenuItems, setMenuItems }) => {
                     </div>
 
                     {/* main content */}
-                    <Outlet  />
+                    <Outlet />
 
                 </div>
             </main>
