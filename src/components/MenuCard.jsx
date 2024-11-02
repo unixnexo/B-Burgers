@@ -1,7 +1,7 @@
 const MenuCard = ({ imgSrc, title, price, handleClick }) => {
 
     return (
-        <div onClick={() => handleClick(title)} className="flex flex-col items-center justify-start relative lg:hover:scale-105 transition-all cursor-pointer">
+        <div onClick={() => handleClick({title, price, imgSrc})} className="flex flex-col items-center justify-start relative lg:hover:scale-105 transition-all cursor-pointer">
             <div className="max-w-52 max-h-52 overflow-hidden">
                 <img src={imgSrc} className="size-full object-cover" alt="burger" />
             </div>

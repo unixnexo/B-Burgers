@@ -1,6 +1,16 @@
-const Receipt = () => {
+const Receipt = ({ userReceipt }) => {
     return (
-        <h1>روزگار بدیااااا</h1>
+        <>
+        {userReceipt.map((item) => (
+            <div key={item.id}>
+                <p>{item.id}</p>
+                <p>{item.title}</p>
+                <p>{item.quantity}</p>
+                <p>{item.price}$</p>
+                <p>{item.imgSrc}</p>
+            </div>
+        ))}
+        </>
     );
 }
  

@@ -8,21 +8,23 @@ const Menu = ({ menuItems, userReceipt, setUserReceipt }) => {
     const [animationParent] = useAutoAnimate();
     const generateUniqueId = useUniqueId();
 
-    const handleClick = (title) => {
+    const handleClick = ({title, price, imgSrc}) => {
         setUserReceipt(prev => {
             const existingItem = prev.findIndex(item => item.title === title);
+            price = Number(price);
 
             if (existingItem !== -1) {
                 const updatedReceipts = [...prev];
                 updatedReceipts[existingItem] = {
                     ...updatedReceipts[existingItem],
-                    quantity: updatedReceipts[existingItem].quantity + 1
+                    quantity: updatedReceipts[existingItem].quantity + 1,
+                    price: updatedReceipts[existingItem].price + price 
                 };
                 return updatedReceipts;
             } else {
                 return [
                     ...prev,
-                    { id: generateUniqueId(), title, quantity: 1 }
+                    { id: generateUniqueId(), title, price, imgSrc, quantity: 1 }
                 ];
             }
 

@@ -194,7 +194,7 @@ function App() {
     createRoutesFromElements(
       <Route path="/" element={<MainLayout initialMenuItems={initialMenuItems} setMenuItems={setMenuItems} />}>
         <Route path="/" element={<Menu menuItems={menuItems} userReceipt={userReceipt} setUserReceipt={setUserReceipt} />}/>
-        <Route path="/receipt" element={<Receipt />}/>
+        <Route path="/receipt" element={<Receipt userReceipt={userReceipt} />}/>
         <Route path="*" element={<NotFound />} />
       </Route>
     )
