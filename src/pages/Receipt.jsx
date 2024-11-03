@@ -4,17 +4,17 @@ const Receipt = ({ userReceipt, totalPrice }) => {
             <div className="mx-auto space-y-5">
     
                 {userReceipt.map((item) => (
-                    <div key={item.id} className="flex justify-between min-w-[600px] text-xl px-3 pb-4 bg-white shadow-xl rounded-2xl overflow-hidden">
+                    <div key={item.id} className="flex justify-between space-x-10 lg:space-x-0 lg:min-w-[600px] text-sm sm:text-xl px-3 pb-4 bg-white shadow-xl rounded-2xl overflow-hidden">
                         <div className="flex space-x-2 overflow-hidden">
-                            <div className="size-36 overflow-hidden">
+                            <div className="size-20 sm:size-24 md:size-36 overflow-hidden shrink-0">
                                 <img src={item.imgSrc} className="object-cover size-full" alt={item.title} />
                             </div>
-                            <div className="self-end mb-4">
+                            <div className="self-end mb-2 sm:mb-4">
                                 <p>x{item.quantity}</p>
                                 <p>{item.title}</p>
                             </div>
                         </div>
-                        <div className="self-end mb-4 text-Bred/80 pr-3">
+                        <div className="self-end mb-2 sm:mb-4 text-Bred/80 pr-3">
                             <p>${item.price}</p>
                         </div>
                     </div>
@@ -23,11 +23,11 @@ const Receipt = ({ userReceipt, totalPrice }) => {
                 <br/>
                 <hr />
                 
-                <div className="flex justify-between">
+                <div className="flex justify-between mx-3">
                     <div className="text-Bred text-3xl font-bold">
                         <p>${totalPrice}</p>
                     </div>
-                    <div className="flex space-x-3 *:py-2.5 *:w-36 *:rounded-2xl">
+                    <div className="flex flex-col sm:flex-row sm:space-x-3 space-y-3 sm:space-y-0 *:py-2.5 *:w-36 *:rounded-2xl">
                         <button className="bg-Bred text-white">Pay Online</button>
                         <button className="bg-white shadow-md border">Pay at Counter</button>
                     </div>
