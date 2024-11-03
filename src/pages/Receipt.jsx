@@ -1,6 +1,7 @@
-const Receipt = ({ userReceipt }) => {
+const Receipt = ({ userReceipt, totalPrice }) => {
     return (
         <>
+        <p>-{totalPrice}-</p>
         {userReceipt.map((item) => (
             <div key={item.id}>
                 <p>{item.id}</p>
