@@ -2,7 +2,7 @@ import { useState } from "react";
 import NavbarItem from "./NavbarItem";
 import { useLocation } from "react-router-dom";
 
-const Navbar = ({ setMenuItems, initialMenuItems }) => {
+const Navbar = ({ setMenuItems, initialMenuItems, totalPrice }) => {
 
     const navbarItems = [
         {
@@ -90,6 +90,7 @@ const Navbar = ({ setMenuItems, initialMenuItems }) => {
                     route={item.route}
                     isActive={activeTitle === item.title}
                     onClick={() => handleClick(item.title)}
+                    totalPrice={totalPrice}
                 />
             ))}
         </nav>

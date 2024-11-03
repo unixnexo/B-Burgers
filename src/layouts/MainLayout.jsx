@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
-const MainLayout = ({ initialMenuItems, setMenuItems }) => {
+const MainLayout = ({ initialMenuItems, setMenuItems, totalPrice }) => {
     const [animationParent] = useAutoAnimate();
 
     return (
@@ -15,7 +15,7 @@ const MainLayout = ({ initialMenuItems, setMenuItems }) => {
 
                     {/* sidebar */}
                     <div className="lg:border-2 rounded-lg ml-2 h-min lg:sticky top-3 mb-16 lg:mb-0 flex justify-center">
-                        <Navbar setMenuItems={setMenuItems} initialMenuItems={initialMenuItems} />
+                        <Navbar setMenuItems={setMenuItems} initialMenuItems={initialMenuItems} totalPrice={totalPrice} />
                     </div>
 
                     {/* main content */}

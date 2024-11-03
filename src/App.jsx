@@ -193,7 +193,7 @@ function App() {
 
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<MainLayout initialMenuItems={initialMenuItems} setMenuItems={setMenuItems} />}>
+      <Route path="/" element={<MainLayout initialMenuItems={initialMenuItems} setMenuItems={setMenuItems} totalPrice={totalPrice} />}>
         <Route path="/" element={<Menu menuItems={menuItems} userReceipt={userReceipt} setUserReceipt={setUserReceipt} SetTotalPrice={SetTotalPrice} />}/>
         <Route path="/receipt" element={<Receipt userReceipt={userReceipt} totalPrice={totalPrice} />}/>
         <Route path="*" element={<NotFound />} />
