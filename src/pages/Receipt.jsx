@@ -10,13 +10,10 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice }) => {
                 item.id === itemId 
                     ? { ...item, quantity: item.quantity > 0 ? item.quantity - 1 : 0 } 
                     : item
-                )
+                ).filter(item => item.quantity > 0)
             );
         };
 
-        useEffect(() => {
-            console.log(userReceipt);
-        }, [userReceipt]);
 
         return (
             <div className="mx-auto space-y-5">
