@@ -1,5 +1,23 @@
-const Receipt = ({ userReceipt, totalPrice }) => {
+import { useEffect } from "react";
+
+const Receipt = ({ userReceipt, setUserReceipt, totalPrice }) => {
+
     if (totalPrice !== 0) {
+
+        const handleQuantityDecrease = (itemId) => {
+            setUserReceipt(prev => 
+                prev.map(item => 
+                item.id === itemId 
+                    ? { ...item, quantity: item.quantity > 0 ? item.quantity - 1 : 0 } 
+                    : item
+                )
+            );
+        };
+
+        useEffect(() => {
+            console.log(userReceipt);
+        }, [userReceipt]);
+
         return (
             <div className="mx-auto space-y-5">
     
@@ -17,6 +35,10 @@ const Receipt = ({ userReceipt, totalPrice }) => {
                         <div className="self-end mb-2 sm:mb-4 text-Bred/80 pr-3">
                             <p>${item.price}</p>
                         </div>
+
+                        
+                        <button onClick={() => handleQuantityDecrease(item.id)}>-</button>
+
                     </div>
                 ))}
     
