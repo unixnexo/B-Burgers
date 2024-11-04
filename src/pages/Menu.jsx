@@ -11,25 +11,26 @@ const Menu = ({ menuItems, userReceipt, setUserReceipt, SetTotalPrice }) => {
     const handleClick = ({title, price, imgSrc}) => {
         price = Number(price);
 
-        SetTotalPrice(prev => {
-            return prev + price;
-        });
+        SetTotalPrice(prev =>  prev + price);
 
         setUserReceipt(prev => {
-            const existingItem = prev.findIndex(item => item.title === title);
+            const existingItemIndex = prev.findIndex(item => item.title === title);
 
-            if (existingItem !== -1) {
+            if (existingItemIndex !== -1) {
                 const updatedReceipts = [...prev];
-                updatedReceipts[existingItem] = {
-                    ...updatedReceipts[existingItem],
-                    quantity: updatedReceipts[existingItem].quantity + 1,
-                    price: updatedReceipts[existingItem].price + price 
+                const existingItem = updatedReceipts[existingItemIndex];
+
+                updatedReceipts[existingItemIndex] = {
+                    ...existingItem,
+                    quantity: existingItem.quantity + 1,
+                    totalPrice: existingItem.price * (existingItem.quantity + 1)
                 };
+
                 return updatedReceipts;
             } else {
                 return [
                     ...prev,
-                    { id: generateUniqueId(), title, price, imgSrc, quantity: 1 }
+                    { id: generateUniqueId(), title, price, imgSrc, quantity: 1, totalPrice: price }
                 ];
             }
 

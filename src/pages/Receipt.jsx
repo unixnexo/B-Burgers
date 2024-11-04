@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-
-const Receipt = ({ userReceipt, setUserReceipt, totalPrice }) => {
+const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => {
 
     if (totalPrice !== 0) {
 
@@ -12,6 +10,13 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice }) => {
                     : item
                 ).filter(item => item.quantity > 0)
             );
+
+            // Update total price based on updated receipt
+            setUserReceipt(updatedReceipt => {
+                const newTotalPrice = updatedReceipt.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                SetTotalPrice(newTotalPrice);
+                return updatedReceipt;
+            });
         };
 
 
