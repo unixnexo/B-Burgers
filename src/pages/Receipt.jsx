@@ -1,4 +1,6 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import Popover from "../components/Popover";
+
 
 const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => {
 
@@ -27,6 +29,7 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
 
 
         return (
+            <>
             <div className="mx-auto space-y-5" ref={animationParent}>
     
                 {userReceipt.map((item) => (
@@ -60,11 +63,29 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
                     </div>
                     <div className="flex flex-col sm:flex-row sm:space-x-3 space-y-3 sm:space-y-0 *:py-2.5 *:w-36 *:rounded-2xl">
                         <button className="bg-Bred text-white">Pay Online</button>
-                        <button className="bg-white shadow-md border">Pay at Counter</button>
+                        <button popovertarget="pay-at-counter-popover" className="bg-white shadow-md border">Pay at Counter</button>
                     </div>
                 </div>
     
             </div>
+
+            {/* implement popover for iphone  */}
+            <Popover 
+            popoverId="pay-at-counter-popover">
+            <div className="flex flex-col items-center py-3">
+                <div className="flex flex-col space-x-2 items-center">
+                    <p>Your order code is <span className="text-Bblack">#Bravo189</span></p>
+                    <p>You are choosing to pay at the counter, <span className="text-Bblack">Are you sure?</span></p>
+                </div>
+                <button
+                    popovertarget="pay-at-counter-popover"
+                    popovertargetaction="hide"
+                     className="mt-5 bg-white rounded-md text-Bblack p-2 disabled:bg-white/60 disabled:text-Bblack/60"
+                    >Pay at Counter
+                </button>
+            </div>
+            </Popover>
+            </>
         );
     }
 
