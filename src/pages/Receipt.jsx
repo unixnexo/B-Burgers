@@ -6,12 +6,14 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
 
     if (totalPrice !== 0) {
 
-        const handleQuantityDecrease = (itemId) => {
+        const handleQuantity = (itemId, type) => {
             setUserReceipt(prev => 
                 prev.map(item => 
-                item.id === itemId 
-                    ? { ...item, quantity: item.quantity > 0 ? item.quantity - 1 : 0 } 
-                    : item
+                item.id === itemId
+                    ? type === "decrease" 
+                        ? { ...item, totalPrice: item.totalPrice - item.price, quantity: item.quantity > 0 ? item.quantity - 1 : 0 }
+                        : { ...item, totalPrice: item.totalPrice + item.price, quantity: item.quantity + 1}
+                    : item,
                 ).filter(item => item.quantity > 0)
             );
 
@@ -35,15 +37,16 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
                             </div>
                             <div className="self-end mb-2 sm:mb-4">
                                     <p>{item.title}</p>
-                                    <div className="flex *:flex *:items-center *:justify-center *:size-6 [&>*:not(p)]:border *:border-black mt-2 hover:[&>*:not(p)]:bg-Bred/70 hover:[&>*:not(p)]:text-white active:[&>*:not(p)]:bg-Bred">
-                                    <button onClick={() => handleQuantityDecrease(item.id)} className="rounded-l-md">-</button>
-                                    <p className="text-sm border-y">{item.quantity}</p>
-                                    <button className="rounded-r-md">+</button>
-                                </div>
+                                    <div className="flex *:flex *:items-center *:justify-center *:size-6 [&>*:not(p)]:border mt-2 hover:[&>*:not(p)]:bg-Bred/70 hover:[&>*:not(p)]:text-white active:[&>*:not(p)]:bg-Bred">
+                                        <button onClick={() => handleQuantity(item.id, "decrease")} className="rounded-l-md">-</button>
+                                        <p className="text-sm border-y">{item.quantity}</p>
+                                        <button onClick={() => handleQuantity(item.id, "increase")} className="rounded-r-md">+</button>
+                                    </div>
                             </div>
                         </div>
-                        <div className="self-end mb-2 sm:mb-4 text-Bred/80 pr-3">
-                            <p>${item.price}</p>
+                        <div className="self-end flex flex-col items-center mb-2 sm:mb-4 pr-3">
+                            <p className="text-xs text-black/50">${item.price}x{item.quantity}</p>
+                            <p className="text-Bred/80">${item.totalPrice}</p>
                         </div>
                     </div>
                 ))}
