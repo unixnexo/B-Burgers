@@ -202,7 +202,7 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
     return (
         <>
         <div className="flex flex-col justify-center items-center grow">
-            <img src="./public/noBurger.webp" className="rounded-xl" alt="no burgers" />
+            <img src="./public/noBurger.webp" className="rounded-xl px-2" alt="no burgers" />
             <p className="mt-3 text-base sm:text-xl md:text-2xl text-center">You haven't picked any burger yet!</p>
         </div>
 
