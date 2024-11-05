@@ -10,8 +10,8 @@ const MenuCard = ({ imgSrc, title, price, handleClick }) => {
     };
 
     return (
-        <div onClick={(e) => {handleClick({title, price, imgSrc}), handleAnimationClick()}} className={`flex flex-col items-center justify-start relative transition-all cursor-pointer ${isScaled ? 'scale-95' : 'lg:hover:scale-105'}`}>
-            <div className="max-w-52 max-h-52 overflow-hidden">
+        <div onClick={() => {handleClick({title, price, imgSrc}), handleAnimationClick()}} className={`flex flex-col items-center justify-start relative transition-all cursor-pointer ${isScaled ? 'scale-95' : 'lg:hover:scale-105'}`}>
+            <div className="size-36 sm:size-44 md:size-60 overflow-hidden">
                 <img src={imgSrc} className="size-full object-cover" alt="burger" />
             </div>
             <p className="text-center">{title}</p>
