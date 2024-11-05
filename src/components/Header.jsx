@@ -59,7 +59,7 @@ const Header = () => {
             <div className="flex justify-between items-start">
                 {/* logo */}
                 <div className="flex items-end lg:items-center">
-                    <img src="/b.png" alt="logo" />
+                    <img src="./b.png" alt="logo" />
                     <div className="luckiest-guy-regular text-2xl leading-5">
                         <p>Bur</p>
                         <p>Ger</p>
