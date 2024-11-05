@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import Popover from "../components/Popover";
+import Message from "./Message";
 
 const Header = () => {
     const [orderNumber, setOrderNumber] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
     const [inputValue, setInputValue] = useState('');
     const [openPopoverId, setOpenPopoverId] = useState(null);
+    const [isMessageShown, setIsMessageShown] = useState(false);
+    const [message, SetMessage] = useState('');
 
 
     useEffect(() => {
@@ -38,7 +41,8 @@ const Header = () => {
     };
 
     const handleCallWaiterClick = () => {
-        console.log('submited, show a toast message');
+        SetMessage("The waiter will come soon!");
+        setIsMessageShown(true);
         // for unsupported popover
         togglePopover('waiter');
     };
@@ -89,7 +93,6 @@ const Header = () => {
             </div>
 
         </header>
-
 
         <Popover 
             popoverId="call-the-waiter-popover" 
@@ -170,6 +173,9 @@ const Header = () => {
                 </div>
             </div>
         </Popover>
+
+        <Message isMessageShown={isMessageShown} setIsMessageShown={setIsMessageShown} message={message} />
+
     </>
     );
 }
