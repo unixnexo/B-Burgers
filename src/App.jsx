@@ -198,7 +198,10 @@ function App() {
         <Route path="/receipt" element={<Receipt userReceipt={userReceipt} setUserReceipt={setUserReceipt} totalPrice={totalPrice} SetTotalPrice={SetTotalPrice} />}/>
         <Route path="*" element={<NotFound />} />
       </Route>
-    )
+    ), 
+    {
+        basename: import.meta.env.BASE_URL
+    }
   )
 
   return <RouterProvider router={router}/>;
