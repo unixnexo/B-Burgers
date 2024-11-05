@@ -61,6 +61,8 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
     const handlePayOnline = () => {
         setMessage("Your order has been confirmed. This is your code #791983");
         setIsMessageShown(true);
+        setUserReceipt([]);
+        SetTotalPrice(0);
     };
 
     // enable btn if all inputs are filled
@@ -196,10 +198,14 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
     }
 
     return (
+        <>
         <div className="flex flex-col justify-center items-center grow">
             <img src="./public/noBurger.webp" className="rounded-xl" alt="no burgers" />
             <p className="mt-3 text-base sm:text-xl md:text-2xl text-center">You haven't picked any burger yet!</p>
         </div>
+
+        <Message isMessageShown={isMessageShown} setIsMessageShown={setIsMessageShown} message={message} />
+        </>
     );
 }
  
