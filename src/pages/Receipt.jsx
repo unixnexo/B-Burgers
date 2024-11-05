@@ -63,13 +63,22 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
         setIsMessageShown(true);
     };
 
+    // enable btn if all inputs are filled
     useEffect(() => {
-        if (input1Ref.current && input1Ref.current.value) {
-            setBtnDisabled(false);
-        } else {
-            setBtnDisabled(true);
-        }
-    }, [input1Ref.current?.value]);
+        const handleInputChange = () => {
+          const allFilled = [input1Ref, input2Ref, input3Ref, input4Ref, input5Ref, input6Ref, input7Ref, input8Ref].every(
+            ref => ref.current?.value
+          );
+          setBtnDisabled(!allFilled);
+        };
+    
+        const inputRefs = [input1Ref, input2Ref, input3Ref, input4Ref, input5Ref, input6Ref, input7Ref, input8Ref];
+        inputRefs.forEach(ref => ref.current?.addEventListener('input', handleInputChange));
+
+        return () => {
+          inputRefs.forEach(ref => ref.current?.removeEventListener('input', handleInputChange));
+        };
+    }, []);
 
 
     if (totalPrice !== 0) {
