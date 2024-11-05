@@ -8,7 +8,7 @@ const Message = ({ isMessageShown, setIsMessageShown, message }) => {
     const [animationParent] = useAutoAnimate();
 
     useEffect(() => {
-        if (isMessageShown) {
+        if (isMessageShown && message) {
             setIsVisible(true); 
             
             const timer = setTimeout(() => {
@@ -28,7 +28,7 @@ const Message = ({ isMessageShown, setIsMessageShown, message }) => {
 
     return (
         <div ref={animationParent}>
-        {isMessageShown && isVisible && (
+        {isMessageShown && isVisible && message &&  (
             <div className="fixed left-2 bottom-2 flex items-start space-x-10 z-50 bg-green-700/90 p-3 rounded-xl text-white">
                 <p className="max-w-56">{message}</p>
                 <button onClick={handleClick} className="flex items-center justify-center bg-white p-1.5 rounded-full *:fill-Bblack">

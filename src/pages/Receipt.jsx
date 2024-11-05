@@ -1,11 +1,14 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Popover from "../components/Popover";
 import { useRef, useState } from 'react';
+import Message from '../components/Message';
 
 
 const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => {
 
     const [openPopoverId, setOpenPopoverId] = useState(null);
+    const [isMessageShown, setIsMessageShown] = useState(false);
+    const [message, setMessage] = useState('');
     const [animationParent] = useAutoAnimate();
 
     const handleQuantity = (itemId, type) => {
@@ -47,6 +50,16 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
         if (e.target.value.length === e.target.maxLength) {
             nextInput.current.focus();
         }
+    };
+
+    const handlePayAtCounter = () => {
+        setMessage("Step by the counter to pay.");
+        setIsMessageShown(true);
+    };
+
+    const handlePayOnline = () => {
+        setMessage("Your order has been confirmed. This is your code #791983");
+        setIsMessageShown(true);
     };
 
 
@@ -93,7 +106,6 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
     
             </div>
 
-
             <Popover 
             popoverId="pay-at-counter-popover"
             isVisible={openPopoverId === 'payAtCounter'}
@@ -107,7 +119,8 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
                 <button
                     popovertarget="pay-at-counter-popover"
                     popovertargetaction="hide"
-                     className="mt-5 bg-white rounded-md text-Bblack p-2 disabled:bg-white/60 disabled:text-Bblack/60"
+                    onClick={handlePayAtCounter}
+                     className="mt-5 bg-white rounded-md text-Bblack py-2 px-6 disabled:bg-white/60 disabled:text-Bblack/60"
                     >Pay at Counter
                 </button>
             </div>
@@ -150,11 +163,15 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
                 <button
                     popovertarget="pay-online"
                     popovertargetaction="hide"
-                     className="mt-5 bg-white rounded-md text-Bblack p-2 disabled:bg-white/60 disabled:text-Bblack/60"
+                    onClick={handlePayOnline}
+                     className="mt-3 bg-white rounded-md text-Bblack py-2 px-6 disabled:bg-white/60 disabled:text-Bblack/60"
                     >Pay Online
                 </button>
             </div>
             </Popover>
+
+            <Message isMessageShown={isMessageShown} setIsMessageShown={setIsMessageShown} message={message} />
+
             </>
         );
     }
