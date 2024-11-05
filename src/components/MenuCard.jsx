@@ -1,7 +1,16 @@
+import { useState } from "react";
+
 const MenuCard = ({ imgSrc, title, price, handleClick }) => {
 
+    const [isScaled, setIsScaled] = useState(false);
+
+    const handleAnimationClick = () => {
+        setIsScaled(true);
+        setTimeout(() => setIsScaled(false), 200);
+    };
+
     return (
-        <div onClick={() => handleClick({title, price, imgSrc})} className="flex flex-col items-center justify-start relative lg:hover:scale-105 transition-all cursor-pointer">
+        <div onClick={(e) => {handleClick({title, price, imgSrc}), handleAnimationClick()}} className={`flex flex-col items-center justify-start relative transition-all cursor-pointer ${isScaled ? 'scale-95' : 'lg:hover:scale-105'}`}>
             <div className="max-w-52 max-h-52 overflow-hidden">
                 <img src={imgSrc} className="size-full object-cover" alt="burger" />
             </div>
