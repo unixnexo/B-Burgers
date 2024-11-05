@@ -1,6 +1,6 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Popover from "../components/Popover";
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Message from '../components/Message';
 
 
@@ -9,6 +9,7 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
     const [openPopoverId, setOpenPopoverId] = useState(null);
     const [isMessageShown, setIsMessageShown] = useState(false);
     const [message, setMessage] = useState('');
+    const [btnDisabled, setBtnDisabled] = useState(true);
     const [animationParent] = useAutoAnimate();
 
     const handleQuantity = (itemId, type) => {
@@ -45,7 +46,7 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
     const input6Ref = useRef(null);
     const input7Ref = useRef(null);
     const input8Ref = useRef(null);
-
+    
     const moveToNextInput = (e, nextInput) => {
         if (e.target.value.length === e.target.maxLength) {
             nextInput.current.focus();
@@ -61,6 +62,14 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
         setMessage("Your order has been confirmed. This is your code #791983");
         setIsMessageShown(true);
     };
+
+    useEffect(() => {
+        if (input1Ref.current && input1Ref.current.value) {
+            setBtnDisabled(false);
+        } else {
+            setBtnDisabled(true);
+        }
+    }, [input1Ref.current?.value]);
 
 
     if (totalPrice !== 0) {
@@ -164,6 +173,7 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
                     popovertarget="pay-online"
                     popovertargetaction="hide"
                     onClick={handlePayOnline}
+                    disabled={btnDisabled}
                      className="mt-3 bg-white rounded-md text-Bblack py-2 px-6 disabled:bg-white/60 disabled:text-Bblack/60"
                     >Pay Online
                 </button>
