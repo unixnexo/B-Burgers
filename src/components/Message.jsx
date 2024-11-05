@@ -29,7 +29,7 @@ const Message = ({ isMessageShown, setIsMessageShown, message }) => {
     return (
         <div ref={animationParent}>
         {isMessageShown && isVisible && message &&  (
-            <div className="fixed left-2 bottom-2 flex items-start space-x-10 z-50 bg-green-700/90 p-3 rounded-xl text-white">
+            <div className="fixed left-2 bottom-2 flex items-start space-x-10 z-[999999] bg-green-700/90 p-3 rounded-xl text-white">
                 <p className="max-w-56">{message}</p>
                 <button onClick={handleClick} className="flex items-center justify-center bg-white p-1.5 rounded-full *:fill-Bblack">
                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12" height="12" viewBox="0 0 48 48">
