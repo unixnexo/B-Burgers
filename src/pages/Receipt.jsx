@@ -56,10 +56,12 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
     const handlePayAtCounter = () => {
         setMessage("Step by the counter to pay.");
         setIsMessageShown(true);
+        setUserReceipt([]);
+        SetTotalPrice(0);
     };
 
     const handlePayOnline = () => {
-        setMessage("Your order has been confirmed. This is your code #791983");
+        setMessage("Your order has been confirmed. This is your code #467");
         setIsMessageShown(true);
         setUserReceipt([]);
         SetTotalPrice(0);
@@ -133,7 +135,7 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
             >
             <div className="flex flex-col items-center py-3 text-center">
                 <div className="flex flex-col space-x-2 items-center">
-                    <p>Your order code is <span className="text-Bblack">#Bravo189</span></p>
+                    <p>Your order code is <span className="text-Bblack">#342</span></p>
                     <p>You are choosing to pay at the counter, <span className="text-Bblack">Are you sure?</span></p>
                 </div>
                 <button
