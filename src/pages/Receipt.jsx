@@ -27,7 +27,7 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
         });
     };
 
-    
+
     // for unsupported popover - only one should be open at a time
     const togglePopover = (popoverId) => {
         setOpenPopoverId((prevId) => (prevId === popoverId ? null : popoverId));
@@ -57,7 +57,7 @@ const Receipt = ({ userReceipt, setUserReceipt, totalPrice, SetTotalPrice }) => 
             <div className="mx-auto space-y-5" ref={animationParent}>
     
                 {userReceipt.map((item) => (
-                    <div key={item.id} className="flex justify-between space-x-10 lg:space-x-0 lg:min-w-[600px] text-sm sm:text-xl px-3 pb-4 bg-white shadow-xl rounded-2xl overflow-hidden">
+                    <div key={item.id} className="flex justify-between space-x-10 lg:space-x-0 min-w-[90vw] lg:min-w-[600px] text-sm sm:text-xl px-3 pb-4 bg-white shadow-xl rounded-2xl overflow-hidden">
                         <div className="flex space-x-2 overflow-hidden">
                             <div className="size-20 sm:size-24 md:size-36 overflow-hidden shrink-0">
                                 <img src={item.imgSrc} className="object-cover size-full" alt={item.title} />
